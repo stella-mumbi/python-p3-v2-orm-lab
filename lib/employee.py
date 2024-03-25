@@ -1,7 +1,5 @@
 from __init__ import CURSOR, CONN
 from department import Department
-
-
 class Employee:
     # Dictionary of objects saved to the database.
     all = {}
@@ -160,13 +158,12 @@ class Employee:
         
         from review import Review
         sql = """
-            SELECT * FROM reviews
+            SELECT * 
+            FROM reviews
             WHERE employee_id = ?
         """
-
-        CURSOR.execute(sql, (self.id,),)
-
+        CURSOR.execute(sql, (self.id,), )
         rows = CURSOR.fetchall()
-        return [
-            Review.instance_from_db(row) for row in rows
-        ]
+        return[Review.instance_from_db(row)
+               for row in rows]
+        
